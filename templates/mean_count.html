@@ -1,0 +1,24 @@
+<html>
+<head>
+	<title>Женская обувь</title>
+</head>
+<body>
+	<a href="{{ url_for('index') }}">Загрузка данных</a>
+	<span>|</span>
+	<a href="{{ url_for('mean_count') }}">Анализ данных</a>
+	<span>|</span>
+	<a href="{{ url_for('predict') }}">Прогнозирование</a>
+	<h1>Подсчёт среднего значения</h1>
+	<form action="{{ url_for('mean_count') }}" method="post">
+		<select name="brand" id="">
+			{% for brand in brands %}
+			<option value="{{brand}}" {% if brand==ibrand %}selected="selected"{% endif %}>{{brand}}</option>
+			{% endfor %}
+		</select>
+		<input type="submit" value="Рассчитать">
+	</form>
+	<p>Средняя цена по бренду: {% if mean_price %} <b>{{ibrand}}</b> = {{mean_price}}{% endif %}</p>
+	<p>Бренд с максимальной ценой: {% if max_price %}<b>{{max_brand}}</b> = {{max_price}}{% endif %}</p>
+	<a target="_blank" href="{{ url_for('create_pdf') }}">Получить тектовой отчёт средних цен всех брендов</a>
+</body>
+</html>

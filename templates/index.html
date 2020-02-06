@@ -1,0 +1,25 @@
+<html>
+<head>
+	<title>Женская обувь</title>
+</head>
+<body>
+	<a href="{{ url_for('index') }}">Загрузка данных</a>
+	<span>|</span>
+	<a href="{{ url_for('mean_count') }}">Анализ данных</a>
+	<span>|</span>
+	<a href="{{ url_for('predict') }}">Прогнозирование</a>
+
+<h2>Выберите файл для загрузки</h2>
+<form method="post" action="{{ url_for('upload_file') }}" enctype="multipart/form-data">
+    <dl>
+		<p>
+			<input type="file" name="file" accept=".csv">
+		</p>
+    </dl>
+    <p>
+		<input type="submit" value="Загрузить">
+	</p>
+</form>
+<!-- {% if error %}<p>{{error}}</p>{% endif %} -->
+</body>
+</html>

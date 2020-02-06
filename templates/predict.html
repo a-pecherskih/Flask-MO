@@ -1,0 +1,33 @@
+<html>
+<head>
+	<title>Женская обувь</title>
+</head>
+<body>
+	<a href="{{ url_for('index') }}">Загрузка данных</a>
+	<span>|</span>
+	<a href="{{ url_for('mean_count') }}">Анализ данных</a>
+	<span>|</span>
+	<a href="{{ url_for('predict') }}">Прогнозирование</a>
+	<h1>Прогнозирование</h1>
+	<form action="{{ url_for('predict') }}" method="post">
+		<select name="brand" id="">
+			{% for brand in brands %}
+			<option value="{{brand}}" {% if brand==ibrand %}selected="selected"{% endif %}>{{brand}}</option>
+			{% endfor %}
+		</select>
+		<input type="submit" value="Прогноз">
+	</form>
+	<form action="{{ url_for('load_regression') }}" method="post"  enctype="multipart/form-data">
+		<input type="hidden" name="brand" value="{{ibrand}}">
+		<input type="file" name="file" autocomplete="off" required>
+		<input type="submit" value="Загрузить модель">
+	</form>
+	{% if img_linear %}
+	<img src="static/{{img_linear}}" alt="Линейная регрессия">
+	<img src="static/{{img_polynom}}" alt="Полиномиальная регрессия">
+	<hr>
+	<a href="static/models/{{filemodel}}">Скачать модель</a>
+	<a target="_blank" href="static/out.pdf">Скачать графический отчёт</a>
+	{% endif %}
+</body>
+</html>

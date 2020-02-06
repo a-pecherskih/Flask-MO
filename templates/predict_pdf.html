@@ -1,0 +1,12 @@
+<table>
+	<tr>
+		<th>Test y</th>
+		<th>Predict y</th>
+	</tr>
+	{%for i in range(0, len)%} 
+	<tr>
+		<td>{{y_test[i]}}</td>
+		<td>{{y_pred[i]}}</td> 
+	</tr>
+	{%endfor%}
+</table> 
